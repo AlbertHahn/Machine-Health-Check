@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="3" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+  <title>MACHINEDATA</title>
+</head>
+
+<body>
+  <h1 style="color: rgb(83, 83, 136)">MACHINE CHECK</h1>
+  <p>{{data.currenTime}}</p>
+  <p>{{data.id}}</p>
+  <p>{{data.machine}}</p>
+  <p>{{data.active}}</p>
+  <div id="myProgress">
+    <p>Health Checker</p>
+    <div id="myBar" > {{ data.randomNumber }} </div>
+  </div>
+  <br>
+
+  <script> 
+  var i = 0;
+function move() {
+  if (i == 0) {
+    i = 1;
+    var elem = document.getElementById("myBar");
+    var width = 1;
+    var varPy = '{{ data.randomNumber }}';
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= varPy) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        elem.style.width = width + "%";
+      }
+      if (varPy <50)
+      {
+        elem.style.backgroundColor = 'red'
+      }
+    }
+  }
+}
+move()
+  </script>
+</body>
+
+</html>
